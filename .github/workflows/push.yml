@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: docker/setup-buildx-action@v3
-      - run: make lint-ci
+      - run: make tests-ci
         working-directory: ./app/
 
   lint:
