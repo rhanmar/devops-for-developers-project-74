@@ -1,0 +1,20 @@
+services:
+
+  app:
+    image: rhanmar/devops-for-developers-project-74
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    env_file:
+      - ./app/.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
