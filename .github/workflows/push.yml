@@ -26,10 +26,6 @@ jobs:
       - lint
       - tests
     steps:
-      - name: Use a secret in a script
-        run: echo "My secret is not visible in logs"
-        env:
-          SUPER_SECRET: ${{ secrets.DOCKER_USERNAME }}
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
@@ -39,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: Dockerfile.production
+          file: ./app/Dockerfile.production
 #          cache-from: type=registry,ref=${{ env.APP_IMAGE_NAME }}
 #          cache-to: type=inline
           push: true
