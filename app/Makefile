@@ -36,5 +36,5 @@ test:
 test-ci:
 	docker compose run --rm app make test
 
-lint-ci:
-	docker compose run --rm app make lint
+setup-local:
+	docker-compose run app make setup

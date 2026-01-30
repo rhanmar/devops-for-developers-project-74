@@ -4,7 +4,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-#    ports:
-#      - "8080:8080"
-#    command: bash -c "make test && make dev"
+    ports:
+      - "8080:8080"
     command: ["make", "dev"]
+    volumes:
+      - ./app:/app
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./services/caddy:/etc/caddy
