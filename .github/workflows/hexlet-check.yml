@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: ls -la
-      - run: pwd
+      - run: make prepare-env
+        working-directory: ./app/
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
