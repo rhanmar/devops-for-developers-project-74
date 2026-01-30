@@ -7,6 +7,8 @@ services:
     ports:
       - "8080:8080"
     command: ["make", "dev"]
+    env_file:
+      - ./app/.env
     volumes:
       - ./app:/app
 
