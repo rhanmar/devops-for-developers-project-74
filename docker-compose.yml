@@ -7,16 +7,18 @@ services:
       dockerfile: Dockerfile.production
     ports:
       - "8080:8080"
+    command: ["make", "test"]
     depends_on:
-      - postgres
+      db:
+        condition: service_healthy
 
-  postgres:
+  db:
     image: postgres:17-alpine
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USERNAME}
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
